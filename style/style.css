@@ -1,0 +1,11 @@
+form{
+    background-color: green;
+    width:50%;
+    margin: auto;
+    text-align: center;
+    padding: 1em;
+}
+
+textarea{
+    width: 100%;
+}
