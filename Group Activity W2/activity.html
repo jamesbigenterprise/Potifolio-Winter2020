@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        const writer = (input) => {
+            console.log("dude");
+            var inputText = document.getElementById("txt_input").value;
+            console.log(inputText);
+            document.getElementById("my_id").innerHTML = inputText;
+        };
+
+
+        /*Write a new function that expects a number as an argument. It should take 
+        that number and sum all
+         the numbers up to the number provided. (ie n=5…so it would do 1+2+3+4+5 = 15) It should return that value.
+ When the button is pressed it should read the number from the input. Make sure it is a valid number, call
+  the summing function you just wrote, and output the result to the div.*/
+    const count = (number) => {
+        console.log("starting validation....");
+        console.log("number is == " + number);
+        if(!isNaN(number)){
+            console.log("valid number that is == " + number);
+            var next = 0;
+        for (var int = 0; int < number; int++){
+            console.log("looping");
+            next++;
+            int + next;
+            console.log("int == " + int + " next == " + next + " number == " + number);
+        }
+        document.getElementById("div_num").innerHTML = int;
+      }
+    };
+
+    /*3*/
+
+    const add = (number1, number2) => {
+        console.log("starting validation....");
+        console.log("number is == " + number1 );
+        if(!isNaN(number1)&& !isNaN(number2)){
+            console.log("valid number1 that is == " + number1 + "valid number2 that is == " + number2);
+            var result = number1 + number2;
+        document.getElementById("div2_num").innerHTML = result;
+      }
+    };
+    </script>
+
+    <title>Document</title>
+</head>
+    <!--Add a text input and a button. Put an empty div with an ID below those.
+    Add a script tag, write a function that will read the contents of the input, and write them to the div.
+   Call the function when the button is pressed -->
+
+   <input type="text" id="txt_input">
+     <div id="my_id"></div>
+    </input>
+    <button onclick=writer()> Write Text</button>
+
+    <br><br><br>
+    <input type="number" id="num1_input">
+    </input>
+    <div id="div_num"></div>
+    <button onclick="count(document.getElementById('num1_input').value)"> Count</button>
+
+    <br><br><br>
+    <input type="number" id="num1_input">
+    
+    <input type="number" id="num2_input">
+    <button onclick="add(document.getElementById('num1_input').value, document.getElementById('num2_input').value)"> + </button>    
+</input>
+    <div id="div2_num"></div>
+    
+
+</body>
+</html>
