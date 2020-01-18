@@ -39,11 +39,16 @@
         console.log("starting validation....");
         console.log("number is == " + number1 );
         if(!isNaN(number1)&& !isNaN(number2)){
-            console.log("valid number1 that is == " + number1 + "valid number2 that is == " + number2);
-            var result = number1 + number2;
+            console.log("valid number1 == " + number1 + " valid number2 == " + number2);
+            var num1 = parseFloat(number1);
+            var num2 = parseFloat (number2);
+            var result = parseFloat(num1 + num2);
         document.getElementById("div2_num").innerHTML = result;
       }
     };
+    const multiply = (num1, num2)=>{};
+    const subtract = (num1, num2)=>{};
+    const divide = (num1, num2)=>{};
     </script>
 
     <title>Document</title>
@@ -64,10 +69,10 @@
     <button onclick="count(document.getElementById('num1_input').value)"> Count</button>
 
     <br><br><br>
-    <input type="number" id="num1_input">
-    
-    <input type="number" id="num2_input">
-    <button onclick="add(document.getElementById('num1_input').value, document.getElementById('num2_input').value)"> + </button>    
+    <input type="number" id="add1_input">
+    +
+    <input type="number" id="add2_input">
+  <button onclick="add(document.getElementById('add1_input').value, document.getElementById('add2_input').value)"> = </button>    
 </input>
     <div id="div2_num"></div>
     

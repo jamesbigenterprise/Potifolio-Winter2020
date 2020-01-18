@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+<script>
+    const cars = ["Saab", "Volvo", "BMW"];
+    /*
+    for (var i = 0; i < cars.length; i++){
+        console.dir(cars);
+        console.log(cars);
+        console.log(cars[i]);
+    }
+    */
+    //for each
+    //cars.forEach(function(item){console.log(item)});
+    /*
+    cars.forEach((item, index) => {
+        console.log(index, item);
+    });
+    */
+    /*
+    function stuff(item) {
+        console.log(item);
+    }
+    cars.forEach(stuff);
+    */
+    //map
+    const newArray = cars.map((car)=> {
+        return 'sold' + car;
+    });
+    const array2 = cars.map(car => "sold" + car);
+    console.log(array2);
+    console.log(Math.random());
+
+    // random
+    function randomNum(num) {
+        
+        return Math.floor(Math.random() * num) + 1;
+    }
+
+    const wordsArray = ['army', 'beautiful', 'became', 'if', 'actually'];
+    function randomPhrase() {
+        let randomLoop = Math.random() * 10;
+        for (let i = 0; i < randomLoop; i++){
+            let randIndex = Math.random() * 10;
+            console.log(wordsArray[randIndex]);
+        }
+
+    }
+
+    
+</script>
+</head>
+<body>
+    
+</body>
+</html>
