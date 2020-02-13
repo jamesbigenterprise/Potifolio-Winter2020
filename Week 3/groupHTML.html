@@ -5,19 +5,120 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Tic Tac Toe</title>
+    <style>
+        table, tr, td {
+            
+            border-collapse: collapse;
+            width: 30%;
+        height: 30%;
+            
+            
+        }
+        td{
+            border-right: 2px solid;
+            border-bottom: 2px solid;
+            font-size: 1em;
+            text-align: center;
+        }
+        table{ 
+            width: 120px;
+            height: 120px;
+        }
+        .bottom{
+            border-bottom: none;
+        }
+        .right{
+            border-right: none;
+        }
+    
+    </style>
+    <script>
+        let character = "X";
+    function gameMove(event){
+        console.log(event.path[0].id);
+        const location = document.getElementById(event.path[0].id);
+        location.innerHTML = character;
+        const elem = document.querySelectorAll('.cell');
+        gameResult(elem);
+        switchCharacter();
+    }
+
+    function gameOver (result) 
+    {
+        const displayH2 = document.querySelector('#result');
+        displayH2.innerHTML = "The winner is " + result;
+    }
+    function gameResult(elements)
+    {
+        //Score
+        let score = 0;
+        //2 dimentional loop to check results
+        //a has x
+        //pick a cell to check
+        //check above, right, below, left and diagonals
+        //horizontal
+        let horizontalSequence = [1, 2, 0, -1, -2];
+        //vertical
+        let verticalSequence = [3, 6, 0, -3, -6];
+        
+        //diagonal
+        let diagonalSequence = [4, 8, 0, -4, -8];
+        
+        //X loop
+        for (let i = 0; i < elements.length; i++)
+        {
+            let int = 0;
+           //horizontal
+           horizontalSequence.forEach(position => 
+          {
+            if (i + position >= 0 )
+            {
+                if (elements[i + position].innerText != null)
+                {
+                  elements[i + position].innerText == 'X' ? score++ : score--;
+                  score == 3 ?  gameOver('X'): "";
+                }
+            }
+          });
+        }
+    }
+
+    function resetBoard ()
+    {
+       const board = document.getElementById('tictac');
+       const elements = board.querySelectorAll('.cell');
+       console.log(elements);
+       elements.forEach(element => {
+           console.log(element);
+           element.innerHTML = "";
+       });
+
+    }
+    function switchCharacter ()
+    {
+        if (character == "X"){
+            character = "O";
+        }else
+        character = "X";
+    }
+    </script>
 </head>
 <body>
-    
-    <table>
+    <h1 id='result'></h1>
+    <table id='tictac'>
         <tr>
-            <td></td><td></td><td></td>
+            <td class='cell' id='a1' ontouchend='gameMove(event)'></td><td class='cell' id='a2' ontouchend='gameMove(event)'></td><td class='cell right' id='a3' ontouchend='gameMove(event)'></td>
         </tr>
         <tr>
-            <td></td><td></td><td></td>
+            <td class='cell' id='b1' ontouchend='gameMove(event)'></td><td class='cell' id='b2' ontouchend='gameMove(event)'></td><td class='cell right' id='b3' ontouchend='gameMove(event)'></td>
         </tr>
         <tr>
-            <td></td><td></td><td></td>
+            <td class='cell bottom' id='c1' ontouchend='gameMove(event)'></td><td class='cell bottom ' id='c2' ontouchend='gameMove(event)'></td><td class='cell bottom right' id='c3' ontouchend='gameMove(event)'></td>
         </tr>
     </table>
+    <br><br><br><br>
+
+    <button onclick="resetBoard()">Reset</button>
+
 </body>
 </html>

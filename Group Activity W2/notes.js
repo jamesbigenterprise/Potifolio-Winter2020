@@ -72,3 +72,16 @@ function quizNinja(){
     //alert("Game Over \n You Scored " + score + " Point" + score === 1?".":"s.");
     alert(`Game Over, you scored ${score} point${score !== 1 ? 's' : ''}`);
 }
+/*
+An important concept to get your head around is that objects are assigned byreference. 
+This means that if a variable is assigned to an object that already exists, it will simply
+ point to the exact same space in memory. 
+So any changes made usingeitherreference will affect the same object. 
+
+Objects as Parameters to Functions
+allows defaults in any order when calling a function
+
+greet({ greeting: `What's up dude`, age: 10, name: `Bart` });
+<< 'What\'s up dude! My name is Bart and I am 10 years old.'
+*/
+
