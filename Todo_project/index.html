@@ -9,15 +9,23 @@
 <script src="main.js" type="module" defer></script>
 <body>
     <h1>Todos</h1>
-    <ul id="todoList">
-        <!--This list item will be added dinamically
-        as we add tasks to our list-->
-        <li>
-            <input type="checkbox">
-            <p class="task">Task</p>
-            <button class="delete">X</button>
-        </li>
-    </ul>
-    <input id="newTodo"><button id="newTodoButton"> + </button></input>
+    
+    <section>
+        <ul id="todoList" >
+
+        </ul>
+        <div>
+            <span id="counter"></span>
+            <button id="all">All</button>
+            <button id="active">Active</button>
+            <button id="completed">Completed</button>
+        </div>
+    </section>
+    <footer>
+        <input id="newTodo"><button id="newTodoButton"> + </button></input>
+        
+    </footer>
+    
+
 </body>
 </html>

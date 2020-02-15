@@ -3,18 +3,12 @@ import {qs, qsA} from './utilities.js';
 
 //Attributes
 let TodosArray = undefined;
-console.log(localStorage.getItem('todoArray'));
 if (localStorage.getItem('todoArray') === null)
 {
    localStorage.setItem('todoArray', '[]');
-   console.log("Creating a new local storage");
-   console.log(localStorage.getItem('todoArray'));
    TodosArray = JSON.parse(localStorage.getItem('todoArray'));
-
 }else 
 {
-   console.log("This is what we currently have at the local storage" 
-   + localStorage.getItem('todoArray'));
    TodosArray = JSON.parse(localStorage.getItem('todoArray'));
 } 
 
@@ -29,22 +23,93 @@ function updateLocalStorage()
  * Add tasks
  * Remove Tasks
  * Complite tasks
- * Filter tasks (checked, unchecked)
+ * Filter tasks (checked, unchecked) hising classes
 ********************************************************/
-
- 
 export default class TodoApp 
 {
    constructor ()
    {
-      console.log("TodoApp Constructor == Binding the listener");
       bindTouch('#newTodoButton', this.addNewTodo.bind(this));
+      bindTouch('#active', this.hideCompleted.bind(this));
+      bindTouch('#completed', this.hideActive.bind(this)); 
+      bindTouch('#all', this.showAll.bind(this));
+      this.listTodos(TodosArray);
+   }
 
-   }
+   /******************************************************
+   * LISTTODOS
+   * *****************************************************
+   * This method will display the tasks
+   * Make changes according to the data
+   * Add the necessary event listeners
+   *******************************************************/
    listTodos(todosToDisplay)
-   {
-      console.log(todosToDisplay);   
+   {  
+      const unorderedList = qs('#todoList');
+      unorderedList.innerHTML = '';
+      let tasksLeft = 0;
+      
+      //create a todo list item with the appropriate listeners
+      todosToDisplay.forEach(todo => {
+       const item = document.createElement('li');
+       item.innerHTML = 
+        `<button class="ck" > </button>
+        <p class="task">${todo.text}</p>
+        <button id=${todo.id} class="delete">X</button>`;
+       item.firstChild.addEventListener('click', checkTask => this.checkTodo(todo.id));
+       item.lastElementChild.addEventListener('click', removeTask => this.removeTodo(todo.id));
+       todo.checked ? item.classList.add("checked") : item.classList.add("active");
+       //Add the checked character to the button
+       todo.checked ? item.firstChild.innerHTML = "&#10003;" : item.firstChild.innerHTML = "";
+       //count another active task to display
+       todo.checked ? "":tasksLeft++;
+       unorderedList.appendChild(item);
+      });
+      //Display the counter
+      qs("#counter").innerHTML = tasksLeft + " Tasks Left";
    }
+
+   /******************************************************
+   * HIDECOMPLETED
+   * *****************************************************
+   * This method will toggle classes to hide the completed 
+   * tasks
+   *******************************************************/
+    hideCompleted()
+    {    
+      qs('#todoList').classList.toggle("hideCompleted");
+      qs('#todoList').classList.remove("hideActive");
+    }
+
+    /******************************************************
+   * HIDEACTIVE
+   * *****************************************************
+   * This method will toggle classes to hide the Active 
+   * tasks
+   *******************************************************/   
+    hideActive()
+    {  
+      qs('#todoList').classList.toggle("hideActive");
+      qs('#todoList').classList.remove("hideCompleted");
+    }
+
+   /******************************************************
+   * SHOWALL
+   * *****************************************************
+   * This method will toggle classes to show all tasks
+   *******************************************************/    
+    showAll()
+    {  
+      qs('#todoList').classList.remove("hideActive");
+      qs('#todoList').classList.remove("hideCompleted");
+    }
+
+   /******************************************************
+   * ADDNEWTODO
+   * *****************************************************
+   * This method will call savetodo with the iputed text,
+   * erase the input box and call listTodos
+   *******************************************************/   
    addNewTodo()
    {
       //get text 
@@ -52,35 +117,67 @@ export default class TodoApp
       //save to database
       this.saveTodo(todoText.value);
       
-      //list todos
-      this.listTodos(TodosArray);
-
       //erase textbox
       qs("#newTodo").value = "";
 
+      //list todos
+      this.listTodos(TodosArray);
    }
-   removeTodo(itemToRemove)
-   {
 
+   /******************************************************
+   * REMOVETODO
+   * *****************************************************
+   * This method will use an id to find and remove the 
+   * todo. Update the Ids to cover the empty spot left.
+   * Refresh the local storage an display the
+   * new list
+   *******************************************************/
+   removeTodo(id)
+   {
+      TodosArray.splice(id, 1);
+      //Update the id's
+      for (let i = 0; i < TodosArray.length; i++)
+      {
+         TodosArray[i].id = i;
+      }
+      updateLocalStorage();
+      this.listTodos(TodosArray);
    }
-   checkTodo(itemChecked)
-   {
 
+   /******************************************************
+   * CHECKTODO
+   * *****************************************************
+   * This method will use the id to find and check the 
+   * selected id
+   *******************************************************/
+   checkTodo(id)
+   {
+      if (!TodosArray[id].checked)
+      {
+         TodosArray[id].checked = true;
+      }else
+      {
+         TodosArray[id].checked = false;
+      } 
+      updateLocalStorage();
+      this.listTodos(TodosArray);
    }
    
+   /******************************************************
+   * SAVETODO
+   * *****************************************************
+   * This method will create a task object with the 
+   * provided text, save it in the TodosArray and refresh 
+   * the local storage
+   *******************************************************/
    saveTodo(toDo)
    {
-   const task = [false, toDo];
-   //Todo actually saving in the database
-
-   //Temporary
-   //this.TodosList.push(task);
-   console.log(typeof(TodosArray));
+   const task ={
+      id: TodosArray.length,
+      checked: false,
+      text: toDo
+   };
    TodosArray.push(task);
    updateLocalStorage();
    }
 }
-
-//private methods
-
-

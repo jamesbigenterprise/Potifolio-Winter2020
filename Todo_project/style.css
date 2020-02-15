@@ -1,0 +1,122 @@
+*
+        {
+           font-family: Arial, Helvetica, sans-serif;
+           
+        }
+        h1
+        {
+            width: 100%;
+            margin: auto;   
+            text-align: center;
+        }
+        section
+        {
+           width: 90%;
+           margin: auto; 
+           border: black solid;
+        }
+        section > div > button
+        {
+            font-size: 1em;
+            background-color: white;
+            border: black solid;
+            position: relative;
+
+        }
+        section > div
+        {
+           padding: .5em;   
+        }
+        
+        /*
+        *Classes to control whats to be displayed
+        */
+        .checked > p
+        {
+           text-decoration: line-through;
+        }
+        p
+        {
+           word-wrap: break-word; 
+        }
+        .hideCompleted > .checked
+        {
+            display: none;
+        }
+        .hideActive > .active
+        {
+            display: none; 
+        }
+        
+        ul
+        {
+          width: 100%;  
+          margin: 0;
+          padding: 0;
+        }
+        li
+        {
+           display: flex; 
+           width: 100%;
+           border-bottom: black solid;  
+        }
+        li>p, .checked>p
+        {
+           width: 70%;   
+        }
+        .ck
+        {
+           width: 7%;   
+        }
+        
+        /*
+        *Layout the buttons
+        */
+        .ck
+        {
+            display: inline-block;
+            background-color:rgb(255, 255, 255);
+            width: 4em;
+            margin: .3em;
+            border: black solid;
+            font-size: 1.2em;
+            padding: 0;
+            color: green;
+        }
+        .delete
+        {
+            display: inline-block;
+            background-color:rgb(255, 255, 255);
+            margin-right: .1em;          
+            border: none;
+            font-size: 2em;
+            padding: none;
+        }
+        
+        footer
+        {
+           position: fixed;  
+           width: 90%;
+           bottom: 0;
+           margin-left: auto;
+           margin-right: auto;
+           margin-bottom: 1em;
+           
+        }
+        footer > button
+        {
+            font-size: 1.5em;
+            background-color: white;
+            border: black solid;
+            position: relative;
+            margin-left: .2em;
+            ;
+        }
+        footer > input
+        {
+           width: 81%;    
+           padding: .78em;
+           vertical-align: bottom;
+           border: black solid;
+        }
+        
