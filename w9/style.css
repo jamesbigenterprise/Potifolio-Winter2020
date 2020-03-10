@@ -1,0 +1,188 @@
+/*
+worker basically creates a separeted thread in javascript
+
+cookies vs local storage what is better
+depends on personal preference and size needs
+
+//why not pollyfill in everything
+looks like a good tool to use the latest tools still supporting old browswers
+
+The instructoe solution didn't include the solution for the strech challenge
+my solution included 10 classes to animate the descent of the divs 10px at a time
+instead of monituring the number of button presses I decided to use a swich case
+to toggle the classes and reset by the end
+
+part of the solution required the playing class to become and id
+this is probably against the convention since at some periods multiple elements
+have the same id, but the application is faster using just css and toggling some classes
+*/
+html {
+  font-size: 10px;
+  background: url(http://i.imgur.com/b9r5sEL.jpg) bottom center;
+  background-size: cover;
+}
+
+body,html {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.keys {
+  display: flex;
+  flex: 1;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.key {
+  border: .4rem solid black;
+  border-radius: .5rem;
+  margin: 1rem;
+  font-size: 1.5rem;
+  padding: 1rem .5rem;
+  transition: all .07s ease;
+  width: 10rem;
+  text-align: center;
+  color: white;
+  background: rgba(0,0,0,0.4);
+  text-shadow: 0 0 .5rem black;
+}
+
+#playing {
+  transform: scale(1.1);
+  border-color: #ffc600;
+  box-shadow: 0 0 1rem #ffc600;
+}
+
+.down10
+{
+  position: relative; 
+  top: 0px;
+  animation: down10 .5s forwards;
+}
+@keyframes down10
+{
+   100%{top: 10px;}
+}
+
+.down20
+{
+  position: relative; 
+  top: 10px;
+  animation: down20 .5s forwards;
+}
+@keyframes down20
+{
+   100%{top: 20px;}
+}
+
+.down30
+{
+  position: relative; 
+  top: 20px;
+  animation: down30 .5s forwards;
+}
+@keyframes down30
+{
+   100%{top: 30px;}
+}
+
+.down40
+{
+  position: relative; 
+  top: 30px;
+  animation: down40 .5s forwards;
+}
+@keyframes down40
+{
+   100%{top: 40px;}
+}
+
+.down50
+{
+  position: relative; 
+  top: 40px;
+  animation: down50 .5s forwards;
+}
+@keyframes down50
+{
+   100%{top: 50px;}
+}
+
+.down60
+{
+  position: relative; 
+  top: 50px;
+  animation: down60 .5s forwards;
+}
+@keyframes down60
+{
+   100%{top: 60px;}
+}
+
+.down60
+{
+  position: relative; 
+  top: 50px;
+  animation: down60 .5s forwards;
+}
+@keyframes down60
+{
+   100%{top: 60px;}
+}
+.down70
+{
+  position: relative; 
+  top: 60px;
+  animation: down70 .5s forwards;
+}
+@keyframes down70
+{
+   100%{top: 70px;}
+}
+.down80
+{
+  position: relative; 
+  top: 70px;
+  animation: down80 .5s forwards;
+}
+@keyframes down80
+{
+   100%{top: 80px;}
+}
+
+.down90
+{
+  position: relative; 
+  top: 80px;
+  animation: down90 .5s forwards;
+}
+@keyframes down90
+{
+   100%{top: 90px;}
+}
+.down100
+{
+  position: relative; 
+  top: 90px;
+  animation: down100 .5s forwards;
+}
+@keyframes down100
+{
+   0%{top: 90px;}
+   25%{top: 100px;}
+   100%{top: 0px;}
+}
+kbd {
+  display: block;
+  font-size: 4rem;
+}
+
+.sound {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: .1rem;
+  color: #ffc600;
+}

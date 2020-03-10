@@ -1,0 +1,1 @@
+document.getElementById('list').addEventListener('click', .ss)

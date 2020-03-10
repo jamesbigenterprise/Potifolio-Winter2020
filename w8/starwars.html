@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./notes.js" defer></script>
+    <style>
+        main
+        {
+           display: flex;    
+           overflow: hidden;
+           width: 200vw;
+        }
+        #personsList, #details
+        {
+           border: solid 1px black;
+           width: 98vw;
+           padding: 0;
+           flex-shrink: 0;
+        }
+        #personsList button
+        {
+           width:47.5%;
+           height: 5em;
+           background-color: white;
+           border: solid 2px black;    
+        }
+        #details ul 
+        {
+              list-style-type: none;
+              margin: 0;
+              padding: 0;
+              
+        }
+       #details li 
+       {
+         border: solid 2px black;
+         width: 98vw;  
+         text-align: center;
+       }
+       #details button
+       {
+         background-color: white;
+       }
+       
+        .slide
+        {
+            animation-duration: 1s;
+            animation-name: slider;
+            animation-fill-mode: forwards;
+        }
+        @keyframes slider {
+          to{transform: translateX(-100vw);}  
+        }
+        .slideBack
+        {
+            animation-duration: 1s;
+            animation-name: slideBack;
+            animation-fill-mode: backwards;    
+        }
+        @keyframes slideBack {
+          to{transform: translateX(0vw);}  
+        }
+
+    </style>
+</head>
+<body onload= buildInitialList()>
+    <main id="main"> 
+        <ul id="personsList" class="showDetails">
+        </ul>
+        <ul id="details"></ul>
+    </main>
+</body>
+</html>
