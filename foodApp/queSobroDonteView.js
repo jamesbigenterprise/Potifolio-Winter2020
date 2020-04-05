@@ -1,10 +1,17 @@
 /*
-* Display recipe options with image and link in the recipe name
+* queSobroDonteView
+* 
+* Display search results, recipes and saved recipes
 */
 
 export default class queSobroDonteView
 {
 
+    /*
+    * displayRecipe
+    * 
+    * Organize the ingredients, instructions and the note for display
+    */
     displayRecipe(ingredientsJSON, stepsJSON, note)
     {
         const ingredients = ingredientsJSON.extendedIngredients.map((ingredient) => {
@@ -31,21 +38,34 @@ export default class queSobroDonteView
         <p> ${note}</p>`;      
         
         document.getElementById('recipe').innerHTML = displayResults;
+        document.getElementById("main").classList.toggle("slide");    
     }
 
+    /*
+    * displaySavedList
+    * 
+    * take a list of recipes from the searcg  and display their image and name
+    */
     async displaySearchResults(searchResults)
     {
         const displayResults = await searchResults.map(recipe => {
             return `<li> <button class="result" id="${recipe.id}" style="background-image: url(${recipe.image})"> ${recipe.title}</button></li>`; });
-          document.getElementById('results').innerHTML = displayResults.join('');    
+          document.getElementById('results').innerHTML = displayResults.join(''); 
+           
         
     }
 
+    /*
+    * displaySavedList
+    * 
+    * take a list of recipes and display their image and name
+    */
     async displaySavedList(savedList)
     {
         const displayResults = await savedList.map(recipe => {
             return `<li> <button class="result" id="${recipe.id}" style="background-image: url(${recipe.image})"> ${recipe.title}</button></li>`; });
-          document.getElementById('myRecipes').innerHTML = displayResults.join('');    
+          document.getElementById('myRecipes').innerHTML = displayResults.join('');  
+          document.getElementById("main").classList.toggle("slide2");  
         
     }
 }

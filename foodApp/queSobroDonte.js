@@ -7,7 +7,13 @@ const ingredients = '/information?';
 const instructions = '/analyzedInstructions?';
 const bulk = 'informationBulk?ids=';
 
-
+ /*
+   * queSobroDonte
+   * 
+   * Model of the App
+   * Handle data requests using the spoonacular API
+   * Handle local storage 
+   */
 export default class queSobroDonte
 {
 
@@ -22,47 +28,62 @@ export default class queSobroDonte
     {
         this.savedRecipes = JSON.parse(localStorage.getItem('savedRecipes'));
     } 
-    
-    const savedRecipe = {
-        id:123232, note: "I really liked this recipe"
-    }; 
    }
 
+   /*
+   * getSummary
+   * 
+   * Download a bulk of recipes based on the ids in the list
+   */
    async getSummary(idList)
     {
         const data = await getJSON(baseUrl + bulk + idList +key);
         return data;
     }
 
+   /*
+   * search
+   * 
+   * Use the provided list of ingredients to download recipes
+   */
    async search(ingredients)
    {
        
       const ingredientsAdded = ingredients.join(',');
-      //search
       const data = await getJSON(baseUrl + search + ingredientsAdded + key);
-      //const data = await getJSON('./ingredientsSearch.json');
        data.forEach(recipe => {
        });
        return data;
    }
 
+   /*
+   * getSteps
+   * 
+   * Download the steps based on the provided id
+   */
    async getSteps(recipeID)
    {
       const data = await getJSON(baseUrl + recipeID + instructions + key);
-      //const data = await getJSON('./instructions.json');
        return data;
      
    }
 
+  /*
+   * getIngredients
+   * 
+   * Download the ingredients based on the provided id
+   */
     async getIngredients(recipeID)
     {
         const data = await getJSON(baseUrl + recipeID + ingredients + key);
-        //const data = await getJSON('./ingredients.json');
         return data;
     }
 
-    
-
+  /*
+   * getListOfSavedRecipes
+   * 
+   * Get the ids from local storage and download the recioes
+   */
     async getListOfSavedRecipes()
     {
 
@@ -75,32 +96,36 @@ export default class queSobroDonte
        return  this.getSummary(ids);   
     }
     
+  /*
+   * getNote
+   * 
+   * Get the note from local storage using the id 
+   */
     async getNote(recipeID)
     {
         console.log('Getting note recipeID == ' + recipeID);
 
         let output = '';
         this.savedRecipes.forEach(note => {
-            console.log(typeof recipeID + ' ' +recipeID);
-            console.log(typeof note.id + ' ' + note.id);
-            console.log(note.id === recipeID);
-            
            if (note.id === recipeID)
            {
             const str = note.note; 
               console.log('returning note');
               console.log(str);   
-                           
               output =  str;  
            }
        });  
        return output; 
     }
 
+  /*
+   * saveRecipe
+   * 
+   * Create an object with the id and note
+   * Save it to local storage
+   */
     saveRecipe(recipeID, newNote)
     {
-        console.log('queSobroDonte saveRecipe recipeID == ' + recipeID + ' newNote == ' + newNote);
-        
         const savedRecipe = {
             id: recipeID, note: newNote
         };
@@ -108,6 +133,11 @@ export default class queSobroDonte
         this.updateLocalStorage();    
     }
 
+   /*
+   * updateLocalStorage
+   * 
+   * Update the data stored in local storage
+   */
     updateLocalStorage()
     {
        localStorage.setItem('savedRecipes', JSON.stringify(this.savedRecipes));

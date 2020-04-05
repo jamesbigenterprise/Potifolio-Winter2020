@@ -1,6 +1,12 @@
 import queSobroDonteView from "./queSobroDonteView.js";
 import queSobroDonte from "./queSobroDonte.js";
 import { qs } from "./utilities.js";
+
+/*
+* queSobroDonteController
+* 
+* Handle the information between the model and the view
+*/
 export default class queSobroDonteController
 {
    constructor ()
@@ -9,6 +15,12 @@ export default class queSobroDonteController
       this.view = new queSobroDonteView();    
    }
    
+   /*
+   * handleSearch
+   * 
+   * Take the ingredients and used the model to dowload the results
+   * Use the view to display the results
+   */
    async handleSearch (ingredients)
    {
       if (ingredients[0].length >= 3)
@@ -18,21 +30,25 @@ export default class queSobroDonteController
       }      
    }
 
+   /*
+   * showRecipe
+   * 
+   * Use the provided ID to download the steps and ingredients with the model
+   * Display them using the view
+   */
    async showRecipe(id)
    {
-      //get the instructions
       const stepsJSON = await this.model.getSteps(id);
       const ingredientsJSON = await this.model.getIngredients(id);
-      //now that the data is gathered call the view
       const noteString = await this.model.getNote(id);
-      console.log('Controller showRecipe note == ' + noteString );
-      console.log(noteString);
-      
-      
-      //add the event listener to add the note  
       this.view.displayRecipe(ingredientsJSON, stepsJSON, noteString);
    }
 
+  /*
+   * buildSavedRecipesList
+   * 
+   * Grab the saved recipes and use the view to display it
+   */
    async buildSavedRecipesList()
    {
       const listSaved = await this.model.getListOfSavedRecipes();
@@ -40,6 +56,12 @@ export default class queSobroDonteController
 
    }
 
+   /*
+   * saveRecipe
+   * 
+   * Grab the recipe ID and the note
+   * Use the model to save the recipe
+   */
    async saveRecipe ()
    {
       const recipeId = document.getElementById('idPlaceHolder').innerHTML;
