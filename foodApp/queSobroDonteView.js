@@ -38,7 +38,7 @@ export default class queSobroDonteView
         <p> ${note}</p>`;      
         
         document.getElementById('recipe').innerHTML = displayResults;
-        document.getElementById("main").classList.toggle("slide");    
+        document.getElementById("main").classList.toggle("slide");
     }
 
     /*

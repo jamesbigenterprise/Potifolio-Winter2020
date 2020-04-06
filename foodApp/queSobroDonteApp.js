@@ -5,14 +5,17 @@ import { qs } from "./utilities.js";
 const cont = new queSobroDonteController();
 
 document.getElementById('search').addEventListener('keyup', (e) => {
-    console.log(qs('#search').value);
     let ingredients = [];
     ingredients = qs('#search').value.split(' ');
-    console.log(ingredients);
     cont.handleSearch(ingredients);
 })
 
 document.getElementById('results').addEventListener('click', (e) =>{
+    cont.showRecipe(e.target.id);
+} ); 
+
+document.getElementById('myRecipes').addEventListener('click', (e) =>{
+    document.getElementById("main").classList.toggle("slide2");
     cont.showRecipe(e.target.id);
 } ); 
 

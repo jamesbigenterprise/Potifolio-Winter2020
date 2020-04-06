@@ -91,8 +91,6 @@ export default class queSobroDonte
       this.savedRecipes.forEach(s => {
           ids += s.id + ',';
       });
-        console.log(ids);
-        
        return  this.getSummary(ids);   
     }
     
@@ -103,15 +101,11 @@ export default class queSobroDonte
    */
     async getNote(recipeID)
     {
-        console.log('Getting note recipeID == ' + recipeID);
-
         let output = '';
         this.savedRecipes.forEach(note => {
            if (note.id === recipeID)
            {
             const str = note.note; 
-              console.log('returning note');
-              console.log(str);   
               output =  str;  
            }
        });  

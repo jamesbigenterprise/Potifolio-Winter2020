@@ -66,7 +66,10 @@ export default class queSobroDonteController
    {
       const recipeId = document.getElementById('idPlaceHolder').innerHTML;
       const newNote =  document.getElementById('noteText').value;
+      document.getElementById('noteText').value = '';
       this.model.saveRecipe(recipeId, newNote);
+      this.showRecipe(recipeId);
+      document.getElementById("main").classList.toggle("slide");
    }
 }
 
