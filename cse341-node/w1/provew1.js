@@ -30,7 +30,8 @@
 
                 res.write('<!DOCTYPE html><html lang="en"><head> <meta charset="UTF-8">'+ 
                 '<meta name="viewport" content="width=device-width, initial-scale=1.0">'+ 
-                '<title>Prove activity Week 1 - Wellcome </title></head><body>'+ 
+                '<title>Prove activity Week 1 - Wellcome </title>'+
+                '<style> h1{background-color: rgb(66, 135, 245); color:white; padding: 1em; width:75%; margin:auto;} </style></head><body>'+ 
                 '<h1>   Wecome to this page ' + first + ' ' + last + ' it\'s good to have you here.</h1></body></html>');
                 return res.end();
             });
